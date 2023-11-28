@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <link rel="icon" href='/static/aight.ico' type="image/x-icon">
+   <title>Home</title>
+
+
+    <style>
+        /* Style for the button container */
+        .button-container {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        /* Style for the signout button */
+        .signout-button {
+            background-color: #ff5733;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.2s; /* Smooth transition for background color */
+        }
+
+        /* Style for the button when it's pressed */
+        .signout-button:active {
+            background-color: #821c02; /* A darker color when pressed */
+        }
+    </style>
+</head>
+<body>
+    <div class="button-container">
+        <button class="signout-button" id="signout-button">Sign Out</button>
+    </div>
+    <h2>Hello {{ name }} Welcome to FastAPI</h2>
+    <img src="{{ url_for('static', path='fa-logo.png') }}" alt="" width="300">
+
+    <script>
+      // JavaScript code to handle the button click event
+      document.getElementById("signout-button").addEventListener("click", function() {
+          // Redirect to the "/signin" route when the button is clicked
+          window.location.href = "/";
+      });
+  </script>
+</body>
+</html>

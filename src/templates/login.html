@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body>
+    <form method="post" id="login-form">
+        <label for="username">Username:</label>
+        <input type="text" name="username" id="username"><br>
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password"><br>
+        <input type="submit" value="Login" id="login-button">
+    </form>
+
+    <script>
+        document.getElementById("login-form").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent the form from submitting the traditional way
+
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+
+            // Create a new XMLHttpRequest object
+            var xhr = new XMLHttpRequest();
+
+            // Define the request parameters (method, URL, and asynchronous)
+            xhr.open("POST", "/submit/", true);
+
+            // Set the request header if needed
+            xhr.setRequestHeader("Content-Type", "application/json"); // Set the content type to JSON
+
+            // Set up the callback function for when the request is complete
+            xhr.onload = function () {
+                if (xhr.status === 303) {
+                    // Request was successful, handle the response here
+                    window.location.href = xhr.getResponseHeader("Location");
+                }else if (xhr.status === 200) {
+                    // Handle other successful responses
+                    console.log("Wait:"+xhr.responseText);
+                } else {
+                    // Request failed, handle the error here
+                    console.error("Request failed with status: " + xhr.status);
+                }
+            };
+
+            // Prepare the data to be sent as JSON
+            var data = JSON.stringify({"username": username, "password": password});
+
+            // Send the request
+            xhr.send(data);
+        });
+    </script>
+</body>
+</html>
