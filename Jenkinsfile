@@ -6,14 +6,14 @@ pipeline{
                 echo 'Building the applications...'
             }
         }
-        stages("test"){
+        stage("test"){
             steps{
                 echo 'Testing the applications...'
 
 
             }
         }
-        stages("deploy"){
+        stage("deploy"){
             steps{
                 echo 'Deploying the applications...'
 
